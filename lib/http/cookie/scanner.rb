@@ -53,12 +53,12 @@ class HTTP::Cookie::Scanner < StringScanner
   def scan_value
     ''.tap { |s|
       case
-      when scan(/[^,;"]+/)
+      when scan(/[^,;]+/)
         s << matched
-      when skip(/"/)
+      #when skip(/"/)
         # RFC 6265 2.2
         # A cookie-value may be DQUOTE'd.
-        s << scan_dquoted
+      #  s << scan_dquoted
       when check(/;|#{RE_COOKIE_COMMA}/o)
         break
       else
